@@ -8,7 +8,14 @@
 
 import Foundation
 
-public class Tree<Value: Equatable & Hashable>: Equatable, Hashable, CustomStringConvertible {
+public protocol AbstractTree {
+    associatedtype Element
+    var value: Element {get}
+    var left: Self? {get}
+    var right: Self? {get}
+}
+
+public final class Tree<Value: Equatable & Hashable>: AbstractTree, Equatable, Hashable, CustomStringConvertible {
 
     public let value: Value
     public var left: Tree<Value>?
@@ -50,7 +57,7 @@ public class Tree<Value: Equatable & Hashable>: Equatable, Hashable, CustomStrin
 }
 
 extension Tree {
-    public func makeIterator<T: IteratorProtocol>() -> T {
+    public func makeIterator() -> TreeIterator<Tree<Value>> {
         return TreeIterator(tree: self)
     }
 }

@@ -8,16 +8,15 @@
 
 import Foundation
 
-public class TreeIterator<Value: Equatable & Hashable>: IteratorProtocol {
-    public typealias Element = Value
+public class TreeIterator<Elements>: IteratorProtocol where Elements: AbstractTree {
     
-    private var breadthFirstIterator: [Tree<Value>] = []
+    private var breadthFirstIterator: [Elements] = []
     
-    public init(tree: Tree<Value>) {
+    public init(tree: Elements) {
         breadthFirstIterator.append(tree)
     }
     
-    public func next() -> Element? {
+    public func next() -> Elements.Element? {
         // Non-optinal code! It will take O(n) for first element removal.
         // For performance optimization use Stack data structure.
         let tree = breadthFirstIterator.remove(at: 0)
