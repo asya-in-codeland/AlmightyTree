@@ -18,7 +18,7 @@ public class TreeIterator<Elements>: IteratorProtocol where Elements: AbstractTr
     
     public func next() -> Elements.Element? {
         // Non-optinal code! It will take O(n) for first element removal.
-        // For performance optimization use Stack data structure.
+        // For performance optimization use Queue data structure.
         let tree = breadthFirstIterator.remove(at: 0)
         let element = tree.value
         if let nonnullLeft = tree.left {
